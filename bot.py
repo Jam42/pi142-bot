@@ -18,7 +18,7 @@ def send_welcome(message):
 
 @BOT.message_handler(commands=['monday', 'tuesday', 'wednesday', 'thursday', 'friday'])
 def send_day(message):
-    "Send schedule after recieve command"
+    "Send schedule after receive command"
     day = yaml.dump(read_yaml()[message.text[1:]], allow_unicode=True)
     BOT.send_message(message.chat.id, day)
 
