@@ -3,18 +3,23 @@ import os
 import telebot
 import yaml
 
-bot = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
+BOT = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
-with open('schedule.yaml') as stream:
-    data = yaml.load(stream)
+def read_yaml():
+    "Reading yaml from file"
+    with open('schedule.yaml') as stream:
+        data = yaml.load(stream)
+    return data
 
-@bot.message_handler(commands=['start', 'help'])
+@BOT.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-	bot.reply_to(message, "hi")
+    "Send welcome message"
+    BOT.reply_to(message, "hi")
 
-@bot.message_handler(commands=['monday','tuesday','wednesday','thursday','friday'])
+@BOT.message_handler(commands=['monday', 'tuesday', 'wednesday', 'thursday', 'friday'])
 def send_day(message):
-	day = yaml.dump(data[message.text[1:]], allow_unicode=True)
-	bot.send_message(message.chat.id, day)
+    "Send schedule after recieve command"
+    day = yaml.dump(read_yaml()[message.text[1:]], allow_unicode=True)
+    BOT.send_message(message.chat.id, day)
 
-bot.polling()
+BOT.polling()
