@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import config
 import telebot
 import json
+import os
 
-bot = telebot.TeleBot(config.token)
+bot = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
 with open('schedule.json') as json_data:
     data = json.load(json_data)
