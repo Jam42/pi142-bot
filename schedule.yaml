@@ -19,8 +19,7 @@ monday:
   room: '220'
   time: '9:40'
   even: 'false'
-tuesday:
-- {}
+tuesday: []
 wednesday:
 - number: '3'
   lesson: ЮМЛ
