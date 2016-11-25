@@ -1,8 +1,8 @@
 
 import os
+import datetime
 import telebot
 import yaml
-import datetime
 
 BOT = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
@@ -18,12 +18,16 @@ def read_yaml():
 def send_day(message):
     "Send schedule after receive command"
     day_name = message.text[1:]
-    BOT.send_message(message.chat.id, (get_message(read_yaml()[day_name])))
+    day_arr = read_yaml()[day_name]
+    text = get_message(day_arr)
+    BOT.send_message(message.chat.id, text)
 
 @BOT.message_handler(commands=['now'])
 def send_today(message):
     "Send schedule after receive command"
-    BOT.send_message(message.chat.id, (get_message(read_yaml()[get_weekday()])))
+    day_arr = read_yaml()[get_weekday()]
+    text = get_message(day_arr)
+    BOT.send_message(message.chat.id, text)
 
 def get_weekday():
     "Get day of the week"
