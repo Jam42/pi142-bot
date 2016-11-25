@@ -2,6 +2,7 @@
 import os
 import telebot
 import yaml
+import datetime
 
 BOT = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
@@ -35,6 +36,8 @@ def get_message(message, read_yaml):
         room = 'Room: ' + read_yaml[x]["room"] + "\n"
         even = 'Even: ' + read_yaml[x]["even"] + "\n"
         dataList.append(number + lesson + time + room + even + "\n")
+    if not dataList:
+        return ("No lessons")
     dataString = ''.join(dataList)
     return dataString
 
