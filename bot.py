@@ -35,7 +35,6 @@ def get_weekday():
 
 def get_message(read_yaml):
     "Preparing message to sending"
-    print get_weekday()
     dataList = []
     for x in range(len(read_yaml)):
         number = 'Number: ' + read_yaml[x]["number"] + "\n"
