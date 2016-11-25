@@ -1,35 +1,53 @@
 # -*- coding: utf-8 -*-
-import config
+
+import os
+import datetime
 import telebot
+import yaml
 
-bot = telebot.TeleBot(config.token)
+BOT = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
-@bot.message_handler(commands=['start', 'help'])
-def send_welcome(message):
-    	bot.reply_to(message, "Че")
+weekdays=['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
 
-@bot.message_handler(commands=['понедельник'])
-def send_message(message):
-	bot.reply_to(message, "1-я неделя: \n 1: Шаталин (лекция) (2к, ауд. 220) \n 2: Шаталин (семинар) (2к, ауд. 220) \n \n2-я неделя: \n 1: Шабалин (семинар) (2к, ауд. 513)\n 2: Шабалин (лекция) (2к, ауд. 513)")
+def read_yaml():
+    "Reading yaml from file"
+    with open('schedule.yaml') as stream:
+        data = yaml.load(stream)
+    return data
 
-@bot.message_handler(commands=['вторник'])
-def send_message(message):
-	bot.reply_to(message, "отдыхай, фуфел")
+@BOT.message_handler(weekdays)
+def send_day(message):
+    "Send schedule after receive command"
+    day_name = message.text[1:]
+    day_arr = read_yaml()[day_name]
+    text = get_message(day_arr)
+    BOT.send_message(message.chat.id, text)
 
-@bot.message_handler(commands=['среда'])
-def send_message(message):
-	bot.reply_to(message, "1-я неделя: \n 3: Червенчук (лекция) (1к, ауд. 304) \n \n2-я неделя: \n 3: Червенчук (лекция) (1к, ауд. 304)\n 4: Червенчук (семинар) (1к, ауд. 304)")
+@BOT.message_handler(commands=['now'])
+def send_today(message):
+    "Send schedule after receive command"
+    day_arr = read_yaml()[get_weekday()]
+    text = get_message(day_arr)
+    BOT.send_message(message.chat.id, text)
 
-@bot.message_handler(commands=['четверг'])
-def send_message(message):
-	bot.reply_to(message, "1-я неделя: \n 2: Стариков (лекция) (1к, ауд. 307) \n 3: Стариков (семинар) (1к, ауд. 402) \n 4: Федотова (лекция) (1к, ауд. 403) \n \n2-я неделя: \n 2: Христосова (лекция) (1к, ауд. 307) \n 3: Стариков (семинар) (1к, ауд. 402) \n 4: Федотова (семинар) (1к, ауд. 402)")
+def get_weekday():
+    "Get day of the week"
+    return weekdays[datetime.datetime.today().weekday() - 1]
 
-@bot.message_handler(commands=['пятница'])
-def send_message(message):
-	bot.reply_to(message, "1-я неделя: \n 1: Храпова (лекция) (1к, ауд. 304) \n 2: Храпова (семинар) (1к, ауд. 305) \n 3: окно :( \n 4: Христосова (семинар) (1к, ауд. 401) \n \n2-я неделя: \n 1: Мухаметдиновна (лекция) (1к, ауд. 205а) \n 2: Мухаметдиновна (семинар) (1к, ауд. 401) \n 3: окно :( \n 4: Христосова (семинар) (1к, ауд. 401)")
+def get_message(read_yaml):
+    "Preparing message to sending"
+    dataList = []
+    for x in range(len(read_yaml)):
+        number = 'Number: ' + read_yaml[x]["number"] + "\n"
+        lesson = 'Lesson: ' + read_yaml[x]["lesson"] + "\n"
+        time = 'Time: ' + read_yaml[x]["time"] + "\n"
+        room = 'Room: ' + read_yaml[x]["room"] + "\n"
+        even = 'Even: ' + read_yaml[x]["even"] + "\n"
+        dataList.append(number + lesson + time + room + even + "\n")
+    if not dataList:
+        return ("No lessons")
+    dataString = ''.join(dataList)
+    return dataString
 
-@bot.message_handler(content_types=['text'])
-def echo_all(message):
-    bot.send_message(message.chat.id, ')')
 
-bot.polling()
+BOT.polling()
