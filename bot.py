@@ -1,10 +1,12 @@
 
 import os
+import datetime
 import telebot
 import yaml
 
 BOT = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
+weekdays=['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
 
 def read_yaml():
     "Reading yaml from file"
@@ -12,20 +14,26 @@ def read_yaml():
         data = yaml.load(stream)
     return data
 
-
-@BOT.message_handler(commands=['start', 'help'])
-def send_welcome(message):
-    "Send welcome message"
-    BOT.reply_to(message, "hi")
-
-
-@BOT.message_handler(commands=['monday', 'tuesday', 'wednesday', 'thursday', 'friday'])
+@BOT.message_handler(weekdays)
 def send_day(message):
     "Send schedule after receive command"
-    BOT.send_message(message.chat.id, (get_message(message.text[1:], read_yaml()[message.text[1:]])))
+    day_name = message.text[1:]
+    day_arr = read_yaml()[day_name]
+    text = get_message(day_arr)
+    BOT.send_message(message.chat.id, text)
 
+@BOT.message_handler(commands=['now'])
+def send_today(message):
+    "Send schedule after receive command"
+    day_arr = read_yaml()[get_weekday()]
+    text = get_message(day_arr)
+    BOT.send_message(message.chat.id, text)
 
-def get_message(message, read_yaml):
+def get_weekday():
+    "Get day of the week"
+    return weekdays[datetime.datetime.today().weekday() - 1]
+
+def get_message(read_yaml):
     "Preparing message to sending"
     dataList = []
     for x in range(len(read_yaml)):
@@ -35,6 +43,8 @@ def get_message(message, read_yaml):
         room = 'Room: ' + read_yaml[x]["room"] + "\n"
         even = 'Even: ' + read_yaml[x]["even"] + "\n"
         dataList.append(number + lesson + time + room + even + "\n")
+    if not dataList:
+        return ("No lessons")
     dataString = ''.join(dataList)
     return dataString
 
