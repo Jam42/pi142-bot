@@ -22,17 +22,21 @@ def send_welcome(message):
 @BOT.message_handler(commands=['monday', 'tuesday', 'wednesday', 'thursday', 'friday'])
 def send_day(message):
     "Send schedule after receive command"
-    BOT.send_message(message.chat.id, get_message(message.text[1:]))
+    BOT.send_message(message.chat.id, (get_message(message.text[1:], read_yaml()[message.text[1:]])))
 
 
-def get_message(message):
-    data = []
-    for x in range(len(read_yaml()[message])):
-        lesson = 'Lesson: ' + str(yaml.dump(read_yaml()[message][x]["lesson"], allow_unicode=True))
-        time = 'time: ' + yaml.dump(read_yaml()[message][x]["time"])
-        room = 'room: ' + yaml.dump(read_yaml()[message][x]["room"])
-        even = 'even: ' + yaml.dump(read_yaml()[message][x]["even"])
-        data.append(lesson + time + room + even)
-    return data
+def get_message(message, read_yaml):
+    "Preparing message to sending"
+    dataList = []
+    for x in range(len(read_yaml)):
+        number = 'Number: ' + read_yaml[x]["number"] + "\n"
+        lesson = 'Lesson: ' + read_yaml[x]["lesson"] + "\n"
+        time = 'Time: ' + read_yaml[x]["time"] + "\n"
+        room = 'Room: ' + read_yaml[x]["room"] + "\n"
+        even = 'Even: ' + read_yaml[x]["even"] + "\n"
+        dataList.append(number + lesson + time + room + even + "\n")
+    dataString = ''.join(dataList)
+    return dataString
+
 
 BOT.polling()
