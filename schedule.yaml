@@ -3,99 +3,98 @@ monday:
   lesson: Правоведение
   room: '220'
   time: '8:00'
-  even: 'true'
+  even: True
 - number: '2'
   lesson: Правоведение
   room: '220'
   time: '9:40'
-  even: 'true'
+  even: True
 - number: '1'
   lesson: ОС
   room: '513'
   time: '8:00'
-  even: 'false'
+  even: False
 - number: '2'
   lesson: ОС
   room: '220'
   time: '9:40'
-  even: 'false'
+  even: False
 tuesday: []
 wednesday:
 - number: '3'
   lesson: ЮМЛ
   room: '304'
   time: '11:35'
-  even: 'true'
+  even: True
 - number: '4'
   lesson: ЮМЛ
   room: '402'
   time: '13:15'
-  even: 'true'
+  even: True
 - number: '3'
   lesson: ЮМЛ
   room: '402'
   time: '11:35'
-  even: 'false'
+  even: False
 thursday:
 - number: '2'
   lesson: ПИС
   room: '307'
   time: '9:40'
-  even: 'true'
+  even: True
 - number: '3'
   lesson: ПИС
   room: '402'
   time: '11:35'
-  even: 'true'
+  even: True
 - number: '4'
   lesson: Эвристика
   room: '403'
   time: '13:15'
-  even: 'true'
+  even: True
 - number: '2'
   lesson: ИС
   room: '307'
   time: '9:40'
-  even: 'false'
+  even: False
 - number: '3'
   lesson: ИС
   room: '402'
   time: '11:35'
-  even: 'false'
+  even: False
 - number: '4'
   lesson: Эвристика
   room: '402'
   time: '13:15'
-  even: 'false'
+  even: False
 friday:
 - number: '1'
   lesson: Менеджмент
   room: '304'
   time: '8:00'
-  even: 'true'
+  even: True
 - number: '2'
   lesson: Менеджмент
   room: '305'
   time: '9:40'
-  even: 'true'
+  even: True
 - number: '4'
   lesson: ИС
   room: '401'
   time: '13:15'
-  even: 'true'
+  even: True
 - number: '1'
   lesson: Логистика
   room: 205а
   time: '8:00'
-  even: 'false'
+  even: False
 - number: '2'
   lesson: Логистика
   room: '401'
   time: '9:40'
-  even: 'false'
+  even: False
 - number: '4'
   lesson: ИС
   room: '401'
   time: '13:35'
-  even: 'false'
-
+  even: False
