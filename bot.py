@@ -6,7 +6,7 @@ import yaml
 
 BOT = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 
-WEEKDAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
+WEEKDAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
 
 def read_yaml():
@@ -17,7 +17,7 @@ def read_yaml():
 
 
 def check_even():
-    "Asking for type of week"
+    "Return type of week (even / odd)"
     week_number = datetime.datetime.utcnow().isocalendar()[1]
     if week_number % 2 != 0:
         return True
@@ -62,4 +62,4 @@ def get_message(yaml, even):
     return data_list
 
 
-BOT.polling()
+BOT.polling(none_stop=True)
