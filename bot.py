@@ -42,6 +42,15 @@ def send_today(message):
     BOT.send_message(message.chat.id, text)
 
 
+@BOT.message_handler(commands=['tomorrow'])
+def send_tomorrow(message):
+    "Send schedule for tomorrow"
+    tomorrow = WEEKDAYS[datetime.datetime.today().weekday() + 1]
+    day_arr = read_yaml()[tomorrow]
+    text = ''.join(get_message(day_arr, check_even()))
+    BOT.send_message(message.chat.id, text)
+
+
 def get_weekday():
     "Get day of the week"
     return WEEKDAYS[datetime.datetime.today().weekday()]
