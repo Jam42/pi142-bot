@@ -16,7 +16,7 @@ monday:
   even: False
 - number: '2'
   lesson: ОС
-  room: '220'
+  room: '513'
   time: '9:40'
   even: False
 tuesday: []
