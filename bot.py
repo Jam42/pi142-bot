@@ -44,7 +44,7 @@ def send_today(message):
 
 def get_weekday():
     "Get day of the week"
-    return WEEKDAYS[datetime.datetime.today().weekday() - 1]
+    return WEEKDAYS[datetime.datetime.today().weekday()]
 
 
 def get_message(yaml, even):
