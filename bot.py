@@ -34,19 +34,15 @@ def send_day(message):
     BOT.send_message(message.chat.id, text)
 
 
-@BOT.message_handler(commands=['now'])
+@BOT.message_handler(commands=['now', 'tomorrow'])
 def send_today(message):
     "Send schedule after receive command"
-    day_arr = read_yaml()[get_weekday()]
-    text = ''.join(get_message(day_arr, check_even()))
-    BOT.send_message(message.chat.id, text)
-
-
-@BOT.message_handler(commands=['tomorrow'])
-def send_tomorrow(message):
-    "Send schedule for tomorrow"
-    tomorrow = WEEKDAYS[datetime.datetime.today().weekday() + 1]
-    day_arr = read_yaml()[tomorrow]
+    command = message.text[1:]
+    if command == 'now':
+        day_arr = read_yaml()[get_weekday()]
+    else:
+        tomorrow = WEEKDAYS[datetime.datetime.today().weekday() + 1]
+        day_arr = read_yaml()[tomorrow]
     text = ''.join(get_message(day_arr, check_even()))
     BOT.send_message(message.chat.id, text)
 
