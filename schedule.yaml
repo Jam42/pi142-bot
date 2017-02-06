@@ -1,102 +1,112 @@
 monday:
-- number: '1'
-  lesson: Правоведение
-  room: '220'
-  time: '8:00'
-  even: True
 - number: '2'
-  lesson: Правоведение
-  room: '220'
+  lesson: Проектный практикум (лекция)
+  room: '205А'
   time: '9:40'
   even: True
-- number: '1'
-  lesson: ОС
+- number: '3'
+  lesson: Проектный практикум (семинар)
+  room: '205А'
+  time: '11:35'
+  even: True
+- number: '4'
+  lesson: ОС (л/р)
   room: '513'
-  time: '8:00'
+  time: '13:15'
+  even: True
+- number: '3'
+  lesson: Проектный практикум (семинар)
+  room: '205А'
+  time: '11:15'
   even: False
-- number: '2'
-  lesson: ОС
+- number: '4'
+  lesson: ОС (л/р)
   room: '513'
-  time: '9:40'
+  time: '13:15'
   even: False
-tuesday: []
+tuesday: 
+- number: '3'
+  lesson: Основы маркетинга (семинар) 
+  room: '407'
+  time: '11:35'
+  even: True
+- number: '3'
+  lesson: Основы маркетинга (лекция)
+  room: '304'
+  time: '13:15'
+  even: True
 wednesday:
 - number: '3'
-  lesson: ЮМЛ
-  room: '304'
+  lesson: Рефлексивный анализ (семинар)
+  room: '402'
   time: '11:35'
   even: True
 - number: '4'
-  lesson: ЮМЛ
-  room: '402'
+  lesson: Рефлексивный анализ (лекция)
+  room: '407'
   time: '13:15'
   even: True
 - number: '3'
-  lesson: ЮМЛ
+  lesson: Рефлексивный анализ (семинар)
   room: '402'
   time: '11:35'
+  even: False
+- number: '4'
+  lesson: Информационные системы и процессы (лекция)
+  room: '407'
+  time: '13:15'
+  even: False
+- number: '5'
+  lesson: Информационные системы и процессы (семинар)
+  room: '402'
+  time: '15:10'
   even: False
 thursday:
-- number: '2'
-  lesson: ПИС
-  room: '307'
-  time: '9:40'
-  even: True
 - number: '3'
-  lesson: ПИС
-  room: '402'
+  lesson: РиСПСиИ (лекция)
+  room: '205А'
   time: '11:35'
   even: True
 - number: '4'
-  lesson: Эвристика
-  room: '403'
+  lesson: ПИС (лекция)
+  room: '304'
   time: '13:15'
   even: True
-- number: '2'
-  lesson: ИС
-  room: '307'
-  time: '9:40'
-  even: False
-- number: '3'
-  lesson: ПИС
+- number: '5'
+  lesson: ПИС (семинар)
   room: '402'
+  time: '15:10'
+  even: True
+- number: '3'
+  lesson: РиСПСиИ (семинар)
+  room: '205А'
   time: '11:35'
   even: False
 - number: '4'
-  lesson: Эвристика
-  room: '402'
+  lesson: Информационный консалтинг (семинар)
+  room: '205А'
   time: '13:15'
+  even: False
+- number: '5'
+  lesson: ПИС (семинар)
+  room: '402'
+  time: '15:10'
   even: False
 friday:
 - number: '1'
-  lesson: Менеджмент
-  room: '304'
+  lesson: Информационный консалтинг (лекция)
+  room: '405'
   time: '8:00'
   even: True
 - number: '2'
-  lesson: Менеджмент
-  room: '305'
+  lesson: ОС (лекция)
+  room: '513'
   time: '9:40'
   even: True
 - number: '4'
-  lesson: ИС
-  room: '401'
+  lesson: Информационный консалтинг (семинар)
+  room: '205А'
   time: '13:15'
   even: True
-- number: '1'
-  lesson: Логистика
-  room: 205а
-  time: '8:00'
-  even: False
-- number: '2'
-  lesson: Логистика
-  room: '401'
-  time: '9:40'
-  even: False
-- number: '4'
-  lesson: ИС
-  room: '401'
-  time: '13:35'
-  even: False
 saturday: []
 sunday: []
