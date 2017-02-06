@@ -35,12 +35,12 @@ def send_day(message):
 
 
 @BOT.message_handler(commands=['now', 'tomorrow'])
-def send_today(message):
+def send_on_command(message):
     "Send schedule after receive command"
     command = message.text[1:]
-    if command == 'now':
+    if 'now' in command:
         day_arr = read_yaml()[get_weekday()]
-    else:
+    elif 'tomorrow' in command:
         tomorrow = WEEKDAYS[datetime.datetime.today().weekday() + 1]
         day_arr = read_yaml()[tomorrow]
     text = ''.join(get_message(day_arr, check_even()))

@@ -1,0 +1,21 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+STOP=99
+
+export PATH=$PATH:/mnt/flash/usr/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mnt/flash/usr/lib
+export PYTHON=python2.7
+export BIN=bot.py
+export BOTPATH=/mnt/flash/opt/bot
+export LOGPATH=/mnt/flash/log/bot.log
+export TELEGRAM_TOKEN=
+
+start(){  
+  cd $BOTPATH && $(which $PYTHON) $BIN >> $LOGPATH 2>&1 & 
+}
+
+stop(){
+  kill -9 $(ps | grep $BIN | awk '{print $1}') > /dev/null 2>&1
+}
+
