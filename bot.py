@@ -19,7 +19,7 @@ def read_yaml():
 def check_even():
     "Return type of week (even / odd)"
     week_number = datetime.datetime.utcnow().isocalendar()[1]
-    if week_number % 2 != 0:
+    if week_number % 2 == 0:
         return True
     else:
         return False
