@@ -83,7 +83,7 @@ thursday:
   time: '11:35'
   even: False
 - number: '4'
-  lesson: Информационный консалтинг (семинар)
+  lesson: Учебная практика по получению первичных умений
   room: '205А'
   time: '13:15'
   even: False
@@ -93,18 +93,18 @@ thursday:
   time: '15:10'
   even: False
 friday:
-- number: '1'
-  lesson: Информационный консалтинг (лекция)
-  room: '405'
-  time: '8:00'
-  even: True
 - number: '2'
   lesson: ОС (лекция)
   room: '513'
   time: '9:40'
   even: True
+- number: '3'
+  lesson: Учебная практика по получению первичных умений
+  room: '205А'
+  time: '11:35'
+  even: True
 - number: '4'
-  lesson: Информационный консалтинг (семинар)
+  lesson: Учебная практика по получению первичных умений
   room: '205А'
   time: '13:15'
   even: True
